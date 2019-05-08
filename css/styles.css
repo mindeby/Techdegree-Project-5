@@ -23,6 +23,7 @@ body {
 }
 
 .photo_container {
+  display: flex;
   width: 100%;
   padding: 2em;
   margin: auto;
@@ -34,15 +35,19 @@ body {
 }
 
 row_1, row_2, row_3 {
+width: 100%;
 display: block;
-margin: auto;
 padding: 1em;
 justify-content: center;
+margin-left: auto;
+margin-right: auto;
 }
 
 img {
-  justify-content: center;
+  display: block;
   padding: 2em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -56,9 +61,14 @@ img {
   row_1, row_2, row_3 {
     display: inline-block;
     justify-content: space-between;
-    flex-wrap: wrap;
     flex-basis: 20%;
   }
 
+  img {
+    display: inline-block;
+    flex-wrap: wrap;
+    width: 25%;
+
+  }
 
 }
