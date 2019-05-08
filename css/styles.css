@@ -5,6 +5,7 @@
 body {
   margin-left: 5%;
   margin-right: 5%;
+  max-height: 1000px;
 }
 
 .search_bar{
@@ -12,7 +13,7 @@ body {
   margin: auto;
 }
 
-.prompt{
+#prompt{
   margin-top: 20px;
   margin-bottom: 20px;
   padding:0.5em;
@@ -39,6 +40,7 @@ width:80%;
 padding: 1em;
 }
 
+
 /* Media Queries */
 @media (min-width: 768px) {
   .photo_container {
@@ -53,6 +55,12 @@ padding: 1em;
     flex-basis: 25%;
     max-width: 25%;
   }
+
+  .images_spotlight img {
+    max-width: 100%;
+  }
+
+
 
 
 
