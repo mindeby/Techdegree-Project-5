@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+.photo_container {
+  background-color: black;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img {
+max-width: 100%;
+}
