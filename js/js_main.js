@@ -41,9 +41,13 @@ for (var i = 1; i <= 12; i += 1 ) {
   }
 }
 
+document.getElementById('row_1').innerHTML = (photoPaths[0])+(photoPaths[1])+(photoPaths[2])+(photoPaths[3]);
+document.getElementById('row_2').innerHTML = (photoPaths[4])+(photoPaths[5])+(photoPaths[6])+(photoPaths[7]);
+document.getElementById('row_3').innerHTML = (photoPaths[8])+(photoPaths[9])+(photoPaths[10])+(photoPaths[11]);
+
 
 //add the array of thumbnails to the html
-document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
+//document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
 
 
 //lightbox
