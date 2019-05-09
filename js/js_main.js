@@ -58,27 +58,21 @@ var lightbox = $('.gallery a').simpleLightbox({
   captionSelector: 'self',
 });
 
+//create object literal for each photo
+var photo = {
+  title:"",
+  description:"",
+  path:""
+};
+
+for (var i = 1; i <= 12; i += 1 ) {
+  var photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1]};
+  console.log(photo);
+}
+
 //Getting started with the search bar
 
-/*while (true) {
-  search = $(prompt).val();
-  search = search.toLowerCase();
-    if (search === 'whale') {
-      alert("This is a WHALE");
-    } else {
-      break;
-    }
-}*/
-
-/*function matchString() {
-        var searched = $(prompt).val();
-        var matching_result = searched.match(/eek/g);
-        console.log(matching_result);
-    }
-
-
-matchString(); */
-
+photosMatched = [];
 
 $( "#prompt" ).keyup(function() {
   while (true) {
@@ -86,70 +80,16 @@ $( "#prompt" ).keyup(function() {
     search = $('#prompt').val();
     search = search.toLowerCase();
     console.log(search);
-    var animal = "whale";
-    console.log("converted to lower case");
-      if (search == 'animal') {
-        alert("This is a WHALE");
-        console.log("should be matching whale");
+      if (search == photo.title || photo.description) {
+        console.log("found match");
+        photosMatched.push(photo.path);
+        console.log(photosMatched);
+        $('#hidden').hide();
+        document.getElementById('photo_container').innerHTML = (photosMatched.join(''));
+        break;
       } else {
         console.log("didn't match anything");
         break;
       }
   }
 });
-
-
-
-
-//I can trim() the path for matches
-//string.match
-//parseint
-//indexOf to find if it's on the list var position = fruit.indexOf('Apple'); if its not it will return -1
-
-
-/*$(document).ready(function(){
-    $search.keyup(function(){
-
-        // Retrieve the input field text
-        var filter = $(this).val();
-
-        // Loop through the comment list
-        $(".photoContainer img").each(function(){
-
-            // If the list item does not contain the title attr, fade it out
-            if ($(this).attr("title").search(new RegExp(filter, "i")) < 0) {
-                $(this).fadeOut();
-
-            // Show the list item if the phrase matches
-            } else {
-                $(this).fadeIn();
-            }
-        });
-    });
-});
-
-*/
-
-
-/*$("a").each(function(){
-  // If the list item does not contain the title attr, fade it out
-          if ($(this).attr("title").search(new RegExp(filter, "i")) < 0) {
-              $(this).fadeOut();
-            } else {
-                $(this).fadeIn();
-          });
-      });*/
-
-
-/*const box = document.querySelector('.search_bar');
-box.addEventListener('click', function(){
-  alert('you clicked me!');
-  const searched = $('.prompt').val();
-});*/
-
-
-
-/*$('#previewButton').on('click', function(){
-    const title = $('#blogTitleInput').val(); // creating a blog previewer when button is clicked
-    console.log(title);
-});*/
