@@ -59,6 +59,48 @@ var lightbox = $('.gallery a').simpleLightbox({
 });
 
 //Getting started with the search bar
+
+/*while (true) {
+  search = $(prompt).val();
+  search = search.toLowerCase();
+    if (search === 'whale') {
+      alert("This is a WHALE");
+    } else {
+      break;
+    }
+}*/
+
+/*function matchString() {
+        var searched = $(prompt).val();
+        var matching_result = searched.match(/eek/g);
+        console.log(matching_result);
+    }
+
+
+matchString(); */
+
+
+$( "#prompt" ).keyup(function() {
+  while (true) {
+    console.log("function started");
+    search = $('#prompt').val();
+    search = search.toLowerCase();
+    console.log(search);
+    var animal = "whale";
+    console.log("converted to lower case");
+      if (search == 'animal') {
+        alert("This is a WHALE");
+        console.log("should be matching whale");
+      } else {
+        console.log("didn't match anything");
+        break;
+      }
+  }
+});
+
+
+
+
 //I can trim() the path for matches
 //string.match
 //parseint
