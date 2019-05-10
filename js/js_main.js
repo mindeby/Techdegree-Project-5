@@ -15,18 +15,18 @@ const photoTitle = ["Hay Bales",
                     ];
 
 //Create an array to store the photo descriptions
-const photoDescription = ["'I love hay bales. Took this snap on a drive through the countryside past some straw fields.'",
-                           "'The lake was so calm today. We had a great view of the snow on the mountains from here.'",
-                           "'I hiked to the top of the mountain and got this picture of the canyon and trees below.'",
-                           "'It was amazing to see an iceberg up close, it was so cold but didn’t snow today.'",
-                          "'The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons.'",
-                           "'Fall is coming, I love when the leaves on the trees start to change color.'",
-                           "'I drove past this plantation yesterday, everything is so green!'",
-                           "'My summer vacation to the Oregon Coast. I love the sandy dunes!'",
-                           "'We enjoyed a quiet stroll down this countryside lane.'",
-                           "'Sunset at the coast! The sky turned a lovely shade of orange.'",
-                           "'I did a tour of a cave today and the view of the landscape below was breathtaking.'",
-                           "'I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.'"
+const photoDescription = ["' I love hay bales . Took this snap on a drive through the countryside past some straw fields .'",
+                           "' The lake was so calm today. We had a great view of the snow on the mountains from here .'",
+                           "' I hiked to the top of the mountain and got this picture of the canyon and trees below .'",
+                           "' It was amazing to see an iceberg up close, it was so cold but didn’t snow today .'",
+                          "' The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons .'",
+                           "' Fall is coming , I love when the leaves on the trees start to change color .'",
+                           "' I drove past this plantation yesterday , everything is so green !'",
+                           "' My summer vacation to the Oregon Coast . I love the sandy dunes !'",
+                           "' We enjoyed a quiet stroll down this countryside lane.'",
+                           "' Sunset at the coast! The sky turned a lovely shade of orange .'",
+                           "' I did a tour of a cave today and the view of the landscape below was breathtaking .'",
+                           "' I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in .'"
 ];
 
 //Create an array to store the a and img complete paths
@@ -58,55 +58,118 @@ var lightbox = $('.gallery a').simpleLightbox({
   captionSelector: 'self',
 });
 
+
+
 //create object literal for each photo
 var photo = {
   title:"",
   description:"",
-  path:""
+  path:"",
+  words:""
 };
 
-//storing all the photos inside this array
+    //storing all the photo instances inside the array allPhotos
 
 var allPhotos = [];
 
+//Need individual words inside title and descriptions to compare with prompt search
+string_to_array = function (str) {
+     return str.trim().split(" ");
+};
 
 for (var i = 1; i <= 12; i += 1 ) {
-  console.log("beggining of loop");
-  photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1]};
+  photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1], words:string_to_array(photoDescription[i-1])};
   allPhotos.push(photo);
   console.log(photo);
-  console.log("end of loop");
 }
 
-console.log(allPhotos);
-console.log(allPhotos.length);
+var individualWords = [];
 
+/*allPhotos.forEach(function(element) {
+   console.log("So it begins");
+    console.log(element.words[4]);
+    var trial = "tour";
+    if (trial.includes(element.words[4])) {
+      console.log("WE HAVE A MATCH");
+    } else {
+      console.log("NO MATCHES");
+    }
+});*/
 
-console.log(allPhotos[0].title);
-console.log(allPhotos[0].description);
-console.log(allPhotos[0].path);
-
-
-
-/* for (var i = 1; i <= allPhotos.length; i += 1 ) {
-  console.log("beggining of loop inside allPhotos");
-  lookOutString = (allPhotos.title).concat((allPhotos.description));
-  console.log(lookOutString);
-  console.log("end of loop inside allPhotos");
+/*
+for (var i = 1; i <= 12; i += 1 ) {
+    allPhotos.forEach(function(element) {
+       console.log("So it begins");
+        console.log(element.words[4]);
+        var trial = "sandy";
+        if (trial.includes(element.words[4])) {
+          console.log("WE HAVE A MATCH");
+        } else {
+          console.log("NO MATCHES");
+        }
+    });
 }
 */
 
+/*console.log("BEGGINING");
+console.log("below are the words im looking for:");
+console.log(allPhotos[0].words);
+console.log("this is my initial search:");
+var search2 = "hay bales";
+console.log(search2);
+console.log("this is my search after separating the words:");
+var filterSearch2 = string_to_array(search2);
+console.log(filterSearch2);
+console.log("this should be the first word of my search:");
+console.log(filterSearch2[0]);
+console.log("this should be the index of the first word of my search in the allPhotos array:");
+var n = (allPhotos[0].words).indexOf(filterSearch2[1]);
+console.log(n);
+console.log("END");
+*/
 
-//const $secureLinks = $('a[href^="https://"]');
+/*$( "#prompt" ).keyup(function() {
+  search = $('#prompt').val();
+
+  search.toLowerCase();
+
+  separatedSearch = string_to_array(search);
+
+  console.log(separatedSearch);
+
+  for (var i = 1; i <= separatedSearch.length; i += 1 ){
+    for (var i = 1; i <= allPhotos.length; i += 1 ) {
+    console.log(allPhotos[i-1].words);
+
+  console.log(separatedSearch[i-1]);
+  console.log(allPhotos[i-1]);
+  var n = (allPhotos[i-1].words).indexOf(separatedSearch[i-1]);
+  console.log(n);
+  if (n > 0) {
+    console.log("we found a maaaaatch");
+  }
+
+}
+  }
+});
+*/
+
+//THIS CODE IS VERRYYYYYYY IMPORTANT I CAN ACCESS WORDS
+allPhotos.forEach(function(element) {
+  console.log("MY LOG");
+  for (var i = 1; i <= element.words.length; i += 1 ){
+  console.log(element.words[i]);
+  //if its bigger than 0 indexOf its a match, work on this
+  }
+});
 
 
-//Getting started with the search bar
+//IF NEGATIVE ITS NOT A MATCH
 
+
+//FINAL PROMPT
+/*
 var photosMatched = [];
-
-//need to use substring instead of ===  ex:a[href*="string"]
-
-
 
 $( "#prompt" ).keyup(function() {
 
@@ -118,17 +181,17 @@ $( "#prompt" ).keyup(function() {
 
   console.log(search);
 
-  if ( search === allPhotos[1].title.toLowerCase() ) {
-    photosMatched.push(allPhotos[1].path);
+  if ( search === allPhotos[0].title.toLowerCase() ) {
+    photosMatched.push(allPhotos[0].path);
     console.log(photosMatched);
     var unique = photosMatched.filter(function(elem, index, self) {
       return index === self.indexOf(elem);
     })
     document.getElementById('photo_container').innerHTML = (unique.join(''));
-    unique.pop(allPhotos[1].path);
+    unique.pop(allPhotos[0].path);
   }
 
-  if (search !== allPhotos[1].title.toLowerCase()) {
+  if (search !== allPhotos[0].title.toLowerCase()) {
     console.log("didn't match anything");
     document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
   }
@@ -140,29 +203,35 @@ $( "#prompt" ).keyup(function() {
 
 
 
+/*
+  var photosMatched = [];
 
+  $( "#prompt" ).keyup(function() {
 
-/* This works somehow
+    console.log("Began searching for match...");
 
-$( "#prompt" ).keyup(function() {
-  while (true) {
     search = $('#prompt').val();
-    search.toLowerCase();
-    console.log(search);
-      if (search === photo.title.toLowerCase()) {
-        photosMatched.push(photo.path);
-        console.log(photosMatched);
-        $('#hidden').hide();
-        var unique = photosMatched.filter(function(elem, index, self) {
-          return index === self.indexOf(elem);
-        })
-        document.getElementById('photo_container').innerHTML = (unique.join(''));
-        break;
-      } else {
-        console.log("didn't match anything");
-        break;
-      }
-  }
-});
 
-*/
+    search.toLowerCase();
+
+    console.log(search);
+
+    if ( search === allPhotos[0].title.toLowerCase() ) {
+      photosMatched.push(allPhotos[0].path);
+      console.log(photosMatched);
+      var unique = photosMatched.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+      })
+      document.getElementById('photo_container').innerHTML = (unique.join(''));
+      unique.pop(allPhotos[0].path);
+    }
+
+    if (search !== allPhotos[0].title.toLowerCase()) {
+      console.log("didn't match anything");
+      document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
+    }
+
+    photosMatched = [];
+    console.log(photosMatched);
+  });
+  */
