@@ -35,9 +35,9 @@ const photoPaths =[];
 //Create a loop that pushes each photo path into the array we created with a href, title, src and attribute
 for (var i = 1; i <= 12; i += 1 ) {
   if (i <= 9) {
-      photoPaths.push( "<a href='imgs/photos/0" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img src='imgs/photos/thumbnails/0" + i + ".jpg' alt=' ></a>" + photoTitle[i-1] +  "'>" );
+      photoPaths.push( "<a href='imgs/photos/0" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img id='each_image' src='imgs/photos/thumbnails/0" + i + ".jpg' alt=' ></a>" + photoTitle[i-1] +  "'>" );
   } else if (i > 9) {
-      photoPaths.push( "<a href='imgs/photos/" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img src='imgs/photos/thumbnails/" + i + ".jpg' alt=' ></a>" + photoTitle[i-1] + "'>" );
+      photoPaths.push( "<a href='imgs/photos/" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img id='each_image' src='imgs/photos/thumbnails/" + i + ".jpg' alt=' ></a>" + photoTitle[i-1] + "'>" );
   }
 }
 
@@ -65,27 +65,98 @@ var photo = {
   path:""
 };
 
+//storing all the photos inside this array
+
+var allPhotos = [];
+
+
 for (var i = 1; i <= 12; i += 1 ) {
-  var photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1]};
+  console.log("beggining of loop");
+  photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1]};
+  allPhotos.push(photo);
   console.log(photo);
+  console.log("end of loop");
 }
+
+console.log(allPhotos);
+console.log(allPhotos.length);
+
+
+console.log(allPhotos[0].title);
+console.log(allPhotos[0].description);
+console.log(allPhotos[0].path);
+
+
+
+/* for (var i = 1; i <= allPhotos.length; i += 1 ) {
+  console.log("beggining of loop inside allPhotos");
+  lookOutString = (allPhotos.title).concat((allPhotos.description));
+  console.log(lookOutString);
+  console.log("end of loop inside allPhotos");
+}
+*/
+
+
+//const $secureLinks = $('a[href^="https://"]');
+
 
 //Getting started with the search bar
 
-photosMatched = [];
+var photosMatched = [];
+
+//need to use substring instead of ===  ex:a[href*="string"]
+
+
+
+$( "#prompt" ).keyup(function() {
+
+  console.log("Began searching for match...");
+
+  search = $('#prompt').val();
+
+  search.toLowerCase();
+
+  console.log(search);
+
+  if ( search === allPhotos[1].title.toLowerCase() ) {
+    photosMatched.push(allPhotos[1].path);
+    console.log(photosMatched);
+    var unique = photosMatched.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+    })
+    document.getElementById('photo_container').innerHTML = (unique.join(''));
+    unique.pop(allPhotos[1].path);
+  }
+
+  if (search !== allPhotos[1].title.toLowerCase()) {
+    console.log("didn't match anything");
+    document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
+  }
+
+  photosMatched = [];
+  console.log(photosMatched);
+});
+
+
+
+
+
+
+/* This works somehow
 
 $( "#prompt" ).keyup(function() {
   while (true) {
-    console.log("function started");
     search = $('#prompt').val();
-    search = search.toLowerCase();
+    search.toLowerCase();
     console.log(search);
-      if (search == photo.title || photo.description) {
-        console.log("found match");
+      if (search === photo.title.toLowerCase()) {
         photosMatched.push(photo.path);
         console.log(photosMatched);
         $('#hidden').hide();
-        document.getElementById('photo_container').innerHTML = (photosMatched.join(''));
+        var unique = photosMatched.filter(function(elem, index, self) {
+          return index === self.indexOf(elem);
+        })
+        document.getElementById('photo_container').innerHTML = (unique.join(''));
         break;
       } else {
         console.log("didn't match anything");
@@ -93,3 +164,5 @@ $( "#prompt" ).keyup(function() {
       }
   }
 });
+
+*/
