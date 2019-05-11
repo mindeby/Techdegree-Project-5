@@ -90,8 +90,7 @@ var photosMatched = [];
 $( "#prompt" ).keyup(function() {
   document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
   search = $('#prompt').val();
-  search.toLowerCase();
-  var searchSeparated = string_to_array(search); //if the user writes more than 1 word they will be compared individually
+  var searchSeparated = string_to_array(search.toLowerCase()); //if the user writes more than 1 word they will be compared individually
   allPhotos.forEach(function(element) {
     for (var i = 1; i <= element.words.length; i += 1 ){ //go through each word inside each photo description and look for a match
       if (searchSeparated[0] === (element.words[i-1]) || searchSeparated[1] === (element.words[i-1]) || searchSeparated[2] === (element.words[i-1])) { //I'm just looking for a match in the first 3 words inputed
