@@ -100,6 +100,11 @@ $( "#prompt" ).keyup(function() {
         return index === self.indexOf(elem);
       }) //if we have duplicated elements inside the arrays convert it to a unique one
         document.getElementById('photo_container').innerHTML = (unique.join('')); //push the unique paths that matched to the photoContainer to display the images that matched
+        var lightbox = $('.gallery a').simpleLightbox({
+          showCounter: false,
+          captions: true,
+          captionSelector: 'self',
+        });
         if (searchSeparated[0] !== (element.words[i-1]) || searchSeparated[1] !== (element.words[i-1]) || searchSeparated[2] !== (element.words[i-1])) {
           break;
         }
