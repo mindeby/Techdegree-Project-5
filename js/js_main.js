@@ -88,6 +88,11 @@ for (var i = 1; i <= 12; i += 1 ) {
 var photosMatched = [];
 
 $( "#prompt" ).keyup(function() {
+  var lightbox = $('.gallery a').simpleLightbox({
+    showCounter: false,
+    captions: true,
+    captionSelector: 'self',
+  });
   document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
   search = $('#prompt').val();
   var searchSeparated = string_to_array(search.toLowerCase()); //if the user writes more than 1 word they will be compared individually
