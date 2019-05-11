@@ -154,20 +154,57 @@ console.log("END");
 });
 */
 
-//THIS CODE IS VERRYYYYYYY IMPORTANT I CAN ACCESS WORDS
+
+var photosMatched = [];
+
 allPhotos.forEach(function(element) {
   console.log("MY LOG");
-  var matchingWord = "hay bales";
+  var matchingWord = "vacation";
   var matchingWordSeparated = string_to_array(matchingWord);
+  console.log(matchingWordSeparated);
   for (var i = 1; i <= element.words.length; i += 1 ){
-  console.log(element.words[i]);
-  if (matchingWordSeparated[0] === (element.words[i]) || matchingWordSeparated[1] === (element.words[i])) {
-    console.log("THIS WORD MATCHES");
-    console.log(element.path);
-    }
-  //if its bigger than 0 indexOf its a match, work on this
+    console.log(element.words[i-1]);
+    if (matchingWordSeparated[0] === (element.words[i-1]) || matchingWordSeparated[1] === (element.words[i-1])) {
+      console.log("THIS WORD MATCHES");
+      photosMatched.push(element.path);
+      var unique = photosMatched.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+      })
+      console.log("below should be the unique value array");
+      console.log(unique);
+      document.getElementById('photo_container').innerHTML = (unique.join(''));
+      unique.pop(element.path);
+    }  //if its bigger than 0 indexOf its a match, work on this
   }
 });
+
+
+//THIS CODE IS VERRYYYYYYY IMPORTANT I CAN ACCESS WORDS
+/*
+var photosMatched = [];
+
+allPhotos.forEach(function(element) {
+  console.log("MY LOG");
+  var matchingWord = "vacation";
+  var matchingWordSeparated = string_to_array(matchingWord);
+  console.log(matchingWordSeparated);
+  for (var i = 1; i <= element.words.length; i += 1 ){
+    console.log(element.words[i-1]);
+    if (matchingWordSeparated[0] === (element.words[i-1]) || matchingWordSeparated[1] === (element.words[i-1])) {
+      console.log("THIS WORD MATCHES");
+      photosMatched.push(element.path);
+      var unique = photosMatched.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+      })
+      console.log("below should be the unique value array");
+      console.log(unique);
+      document.getElementById('photo_container').innerHTML = (unique.join(''));
+      unique.pop(element.path);
+    }  //if its bigger than 0 indexOf its a match, work on this
+  }
+});
+
+*/
 
 
 //IF NEGATIVE ITS NOT A MATCH
