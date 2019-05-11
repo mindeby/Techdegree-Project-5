@@ -59,7 +59,6 @@ var lightbox = $('.gallery a').simpleLightbox({
 });
 
 
-
 //create object literal for each photo
 var photo = {
   title:"",
@@ -68,115 +67,39 @@ var photo = {
   words:""
 };
 
-    //storing all the photo instances inside the array allPhotos
+//I'm storing all the photo instances inside the array allPhotos
 
 var allPhotos = [];
 
 //Need individual words inside title and descriptions to compare with prompt search
-string_to_array = function (str) {
+string_to_array = function (str) {  //transforms any string into individual words
      return str.trim().split(" ");
 };
 
+//Creating an instance of every photo object
 for (var i = 1; i <= 12; i += 1 ) {
   photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1], words:string_to_array(photoDescription[i-1])};
   allPhotos.push(photo);
 }
 
-var individualWords = [];
 
-/*allPhotos.forEach(function(element) {
-   console.log("So it begins");
-    console.log(element.words[4]);
-    var trial = "tour";
-    if (trial.includes(element.words[4])) {
-      console.log("WE HAVE A MATCH");
-    } else {
-      console.log("NO MATCHES");
-    }
-});*/
+//My very own search function!!
 
-/*
-for (var i = 1; i <= 12; i += 1 ) {
-    allPhotos.forEach(function(element) {
-       console.log("So it begins");
-        console.log(element.words[4]);
-        var trial = "sandy";
-        if (trial.includes(element.words[4])) {
-          console.log("WE HAVE A MATCH");
-        } else {
-          console.log("NO MATCHES");
-        }
-    });
-}
-*/
-
-/*console.log("BEGGINING");
-console.log("below are the words im looking for:");
-console.log(allPhotos[0].words);
-console.log("this is my initial search:");
-var search2 = "hay bales";
-console.log(search2);
-console.log("this is my search after separating the words:");
-var filterSearch2 = string_to_array(search2);
-console.log(filterSearch2);
-console.log("this should be the first word of my search:");
-console.log(filterSearch2[0]);
-console.log("this should be the index of the first word of my search in the allPhotos array:");
-var n = (allPhotos[0].words).indexOf(filterSearch2[1]);
-console.log(n);
-console.log("END");
-*/
-
-/*$( "#prompt" ).keyup(function() {
-  search = $('#prompt').val();
-
-  search.toLowerCase();
-
-  separatedSearch = string_to_array(search);
-
-  console.log(separatedSearch);
-
-  for (var i = 1; i <= separatedSearch.length; i += 1 ){
-    for (var i = 1; i <= allPhotos.length; i += 1 ) {
-    console.log(allPhotos[i-1].words);
-
-  console.log(separatedSearch[i-1]);
-  console.log(allPhotos[i-1]);
-  var n = (allPhotos[i-1].words).indexOf(separatedSearch[i-1]);
-  console.log(n);
-  if (n > 0) {
-    console.log("we found a maaaaatch");
-  }
-
-}
-  }
-});
-*/
 var photosMatched = [];
 
 $( "#prompt" ).keyup(function() {
   document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
-  console.log("Began searching for match...");
-
   search = $('#prompt').val();
-
   search.toLowerCase();
-
-  console.log(search);
-
-  var searchSeparated = string_to_array(search);
-
+  var searchSeparated = string_to_array(search); //if the user writes more than 1 word they will be compared individually
   allPhotos.forEach(function(element) {
-    for (var i = 1; i <= element.words.length; i += 1 ){
-      if (searchSeparated[0] === (element.words[i-1]) || searchSeparated[1] === (element.words[i-1]) || searchSeparated[2] === (element.words[i-1])) {
-        photosMatched.push(element.path);
+    for (var i = 1; i <= element.words.length; i += 1 ){ //go through each word inside each photo description and look for a match
+      if (searchSeparated[0] === (element.words[i-1]) || searchSeparated[1] === (element.words[i-1]) || searchSeparated[2] === (element.words[i-1])) { //I'm just looking for a match in the first 3 words inputed
+        photosMatched.push(element.path); //if there is a match store the path of that element inside photosMatched
         var unique = photosMatched.filter(function(elem, index, self) {
         return index === self.indexOf(elem);
-        })
-        document.getElementById('photo_container').innerHTML = (unique.join(''));
-        console.log("END OF FUNCTION");
-        console.log(search);
-        console.log(unique);
+      }) //if we have duplicated elements inside the arrays convert it to a unique one
+        document.getElementById('photo_container').innerHTML = (unique.join('')); //push the unique paths that matched to the photoContainer to display the images that matched
         if (searchSeparated[0] !== (element.words[i-1]) || searchSeparated[1] !== (element.words[i-1]) || searchSeparated[2] !== (element.words[i-1])) {
           break;
         }
@@ -185,133 +108,3 @@ $( "#prompt" ).keyup(function() {
   });
   photosMatched = [];
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//THIS CODE IS VERRYYYYYYY IMPORTANT I CAN ACCESS WORDS
-/*
-var photosMatched = [];
-
-$( "#prompt" ).keyup(function() {
-  document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
-  console.log("Began searching for match...");
-
-  search = $('#prompt').val();
-
-  search.toLowerCase();
-
-  console.log(search);
-
-  var searchSeparated = string_to_array(search);
-
-  allPhotos.forEach(function(element) {
-    for (var i = 1; i <= element.words.length; i += 1 ){
-      if (searchSeparated[0] === (element.words[i-1]) || searchSeparated[1] === (element.words[i-1]) || searchSeparated[2] === (element.words[i-1])) {
-        photosMatched.push(element.path);
-        var unique = photosMatched.filter(function(elem, index, self) {
-        return index === self.indexOf(elem);
-        })
-        document.getElementById('photo_container').innerHTML = (unique.join(''));
-        console.log("END OF FUNCTION");
-        console.log(search);
-        console.log(unique);
-        unique = [];
-        if (searchSeparated[0] !== (element.words[i-1]) || searchSeparated[1] !== (element.words[i-1]) || searchSeparated[2] !== (element.words[i-1])) {
-          photosMatched.pop(element.path);
-          break;
-        }
-      }
-    }
-  });
-});
-
-*/
-
-
-//IF NEGATIVE ITS NOT A MATCH
-
-
-//FINAL PROMPT
-/*
-var photosMatched = [];
-
-$( "#prompt" ).keyup(function() {
-
-  console.log("Began searching for match...");
-
-  search = $('#prompt').val();
-
-  search.toLowerCase();
-
-  console.log(search);
-
-  if ( search === allPhotos[0].title.toLowerCase() ) {
-    photosMatched.push(allPhotos[0].path);
-    console.log(photosMatched);
-    var unique = photosMatched.filter(function(elem, index, self) {
-      return index === self.indexOf(elem);
-    })
-    document.getElementById('photo_container').innerHTML = (unique.join(''));
-    unique.pop(allPhotos[0].path);
-  }
-
-  if (search !== allPhotos[0].title.toLowerCase()) {
-    console.log("didn't match anything");
-    document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
-  }
-
-  photosMatched = [];
-  console.log(photosMatched);
-});
-
-
-
-
-/*
-  var photosMatched = [];
-
-  $( "#prompt" ).keyup(function() {
-
-    console.log("Began searching for match...");
-
-    search = $('#prompt').val();
-
-    search.toLowerCase();
-
-    console.log(search);
-
-    if ( search === allPhotos[0].title.toLowerCase() ) {
-      photosMatched.push(allPhotos[0].path);
-      console.log(photosMatched);
-      var unique = photosMatched.filter(function(elem, index, self) {
-        return index === self.indexOf(elem);
-      })
-      document.getElementById('photo_container').innerHTML = (unique.join(''));
-      unique.pop(allPhotos[0].path);
-    }
-
-    if (search !== allPhotos[0].title.toLowerCase()) {
-      console.log("didn't match anything");
-      document.getElementById('photo_container').innerHTML = (photoPaths.join(''));
-    }
-
-    photosMatched = [];
-    console.log(photosMatched);
-  });
-  */
