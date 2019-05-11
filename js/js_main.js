@@ -15,18 +15,18 @@ const photoTitle = ["Hay Bales",
                     ];
 
 //Create an array to store the photo descriptions
-const photoDescription = ["' I love hay bales . Took this snap on a drive through the countryside past some straw fields .'",
-                           "' The lake was so calm today. We had a great view of the snow on the mountains from here .'",
-                           "' I hiked to the top of the mountain and got this picture of the canyon and trees below .'",
-                           "' It was amazing to see an iceberg up close, it was so cold but didn’t snow today .'",
-                          "' The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons .'",
-                           "' Fall is coming , I love when the leaves on the trees start to change color .'",
-                           "' I drove past this plantation yesterday , everything is so green !'",
-                           "' My summer vacation to the Oregon Coast . I love the sandy dunes !'",
-                           "' We enjoyed a quiet stroll down this countryside lane.'",
-                           "' Sunset at the coast! The sky turned a lovely shade of orange .'",
-                           "' I did a tour of a cave today and the view of the landscape below was breathtaking .'",
-                           "' I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in .'"
+const photoDescription = ["'I love hay bales . Took this snap on a drive through the countryside past some straw fields.'",
+                           "'The lake was so calm today. We had a great view of the snow on the mountains from here.'",
+                           "'I hiked to the top of the mountain and got this picture of the canyon and trees below.'",
+                           "'It was amazing to see an iceberg up close, it was so cold but didn’t snow today.'",
+                          "'The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons.'",
+                           "'Fall is coming , I love when the leaves on the trees start to change color.'",
+                           "'I drove past this plantation yesterday , everything is so green!'",
+                           "'My summer vacation to the Oregon Coast . I love the sandy dunes!'",
+                           "'We enjoyed a quiet stroll down this countryside lane.'",
+                           "'Sunset at the coast! The sky turned a lovely shade of orange.'",
+                           "'I did a tour of a cave today and the view of the landscape below was breathtaking.'",
+                           "'I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.'"
 ];
 
 //Create an array to store the a and img complete paths
@@ -35,9 +35,9 @@ const photoPaths =[];
 //Create a loop that pushes each photo path into the array we created with a href, title, src and attribute
 for (var i = 1; i <= 12; i += 1 ) {
   if (i <= 9) {
-      photoPaths.push( "<a href='imgs/photos/0" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img id='each_image' src='imgs/photos/thumbnails/0" + i + ".jpg' alt=' ></a>" + photoTitle[i-1] +  "'>" );
+      photoPaths.push( "<a href='imgs/photos/0" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img id='each_image' src='imgs/photos/thumbnails/0" + i + ".jpg' alt='" + photoTitle[i-1] + "'></a>" );
   } else if (i > 9) {
-      photoPaths.push( "<a href='imgs/photos/" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img id='each_image' src='imgs/photos/thumbnails/" + i + ".jpg' alt=' ></a>" + photoTitle[i-1] + "'>" );
+      photoPaths.push( "<a href='imgs/photos/" + i + ".jpg' title=" + photoDescription[i-1] + ">" + "<img id='each_image' src='imgs/photos/thumbnails/" + i + ".jpg' alt='" + photoTitle[i-1] + "'></a>" );
   }
 }
 
@@ -152,8 +152,38 @@ console.log("END");
   }
 });
 */
+var photosMatched = [];
+$( "#prompt" ).keyup(function() {
+
+  console.log("Began searching for match...");
+
+  search = $('#prompt').val();
+
+  search.toLowerCase();
+
+  console.log(search);
+
+  var searchSeparated = string_to_array(search);
+
+  allPhotos.forEach(function(element) {
+    for (var i = 1; i <= element.words.length; i += 1 ){
+      if (searchSeparated[0] === (element.words[i-1]) || searchSeparated[1] === (element.words[i-1]) || searchSeparated[2] === (element.words[i-1])) {
+        console.log("MATCH FOUND");
+        console.log("PATH SHOULD BE BELOW");
+        console.log(element.path);
+        photosMatched.push(element.path);
+        var unique = photosMatched.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+        })
+        document.getElementById('photo_container').innerHTML = (unique.join(''));
+        console.log("END OF FUNCTION");
+      }
+    }
+  });
+});
 
 
+/*
 var photosMatched = [];
 $( "#prompt" ).keyup(function() {
 
