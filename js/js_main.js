@@ -157,8 +157,14 @@ console.log("END");
 //THIS CODE IS VERRYYYYYYY IMPORTANT I CAN ACCESS WORDS
 allPhotos.forEach(function(element) {
   console.log("MY LOG");
+  var matchingWord = "hay bales";
+  var matchingWordSeparated = string_to_array(matchingWord);
   for (var i = 1; i <= element.words.length; i += 1 ){
   console.log(element.words[i]);
+  if (matchingWordSeparated[0] === (element.words[i]) || matchingWordSeparated[1] === (element.words[i])) {
+    console.log("THIS WORD MATCHES");
+    console.log(element.path);
+    }
   //if its bigger than 0 indexOf its a match, work on this
   }
 });
