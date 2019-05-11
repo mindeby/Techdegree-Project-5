@@ -80,7 +80,6 @@ string_to_array = function (str) {
 for (var i = 1; i <= 12; i += 1 ) {
   photo = {title:photoTitle[i-1],description:photoDescription[i-1],path:photoPaths[i-1], words:string_to_array(photoDescription[i-1])};
   allPhotos.push(photo);
-  console.log(photo);
 }
 
 var individualWords = [];
@@ -171,6 +170,7 @@ $( "#prompt" ).keyup(function() {
   allPhotos.forEach(function(element) {
     for (var i = 1; i <= element.words.length; i += 1 ){
       if (searchSeparated[0] === (element.words[i-1]) || searchSeparated[1] === (element.words[i-1]) || searchSeparated[2] === (element.words[i-1])) {
+        console.log("MATCH FOUND");
         photosMatched.push(element.path);
         var unique = photosMatched.filter(function(elem, index, self) {
         return index === self.indexOf(elem);
