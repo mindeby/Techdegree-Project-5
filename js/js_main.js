@@ -177,14 +177,13 @@ $( "#prompt" ).keyup(function() {
         console.log("END OF FUNCTION");
         console.log(search);
         console.log(unique);
-        unique = [];
         if (searchSeparated[0] !== (element.words[i-1]) || searchSeparated[1] !== (element.words[i-1]) || searchSeparated[2] !== (element.words[i-1])) {
-          photosMatched.pop(element.path);
           break;
         }
       }
     }
   });
+  photosMatched = [];
 });
 
 
