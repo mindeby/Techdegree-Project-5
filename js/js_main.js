@@ -1,6 +1,6 @@
 
 //Create an array to store the photo titles
-const photoTitle = ["Hay Bales",
+var photoTitle = ["Hay Bales",
                     "Lake",
                     "Canyon",
                     "Iceberg",
@@ -15,7 +15,7 @@ const photoTitle = ["Hay Bales",
                     ];
 
 //Create an array to store the photo descriptions
-const photoDescription = ["'I love hay bales . Took this snap on a drive through the countryside past some straw fields.'",
+var photoDescription = ["'I love hay bales . Took this snap on a drive through the countryside past some straw fields.'",
                            "'The lake was so calm today. We had a great view of the snow on the mountains from here.'",
                            "'I hiked to the top of the mountain and got this picture of the canyon and trees below.'",
                            "'It was amazing to see an iceberg up close, it was so cold but didn’t snow today.'",
@@ -27,10 +27,10 @@ const photoDescription = ["'I love hay bales . Took this snap on a drive through
                            "'Sunset at the coast! The sky turned a lovely shade of orange.'",
                            "'I did a tour of a cave today and the view of the landscape below was breathtaking.'",
                            "'I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in.'"
-];
+                         ];
 
 //Create an array to store the a and img complete paths
-const photoPaths =[];
+var photoPaths = [];
 
 //Create a loop that pushes each photo path into the array we created with a href, title, src and attribute
 for (var i = 1; i <= 12; i += 1 ) {
