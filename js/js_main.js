@@ -116,4 +116,9 @@ $( "#prompt" ).keyup(function() {
     }
   });
   photosMatched = [];
+  var lightbox = $('.gallery a').simpleLightbox({
+    showCounter: false,
+    captions: true,
+    captionSelector: 'self',
+  });
 });
