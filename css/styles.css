@@ -8,6 +8,10 @@ body {
   max-height: 1000px;
 }
 
+h1 {
+  color: #141218;
+}
+
 .search_bar{
   width:40%;
   margin: auto;
